@@ -1,0 +1,39 @@
+-- Schema Operations (add/alter/drop)
+
+--1. create a schema 
+-- syntax: create schema schema_name
+create schema hr;
+
+--2. Rename a schema
+-- syntax: alter schema schema_name to new_schema_name
+alter schema hr rename to humanresourses
+
+--3. Drop a schema
+-- syntax: drop schema schema_name
+drop schema programming;
+
+--4. move a table to new schema
+-- syntax: alter table table_name set schema schema_name
+alter table humanresourses.orders set schema public
+
+-- Search Path
+
+--1. how to view current schema
+select current_schema ();
+
+--2. how to view current search path
+show search_path;
+
+--3. How to add new schema to search path
+-- syntax: set search_path to schema_name, public;
+set search_path to humanresourses, public;
+set search_path to public, humanresourses;
+
+-- Schema Ownership
+-- syntax : alter schema schema_name owner to new_owner
+
+
+
+
+
+
