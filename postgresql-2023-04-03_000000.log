@@ -1,0 +1,509 @@
+2023-04-03 05:57:40.377 PDT [2108] ERROR:  syntax error at or near "payment_date" at character 88
+2023-04-03 05:57:40.377 PDT [2108] STATEMENT:  SELECT 
+		payment_id,
+		customer_id,
+		amount,
+		payment_date
+	FROM 
+		payment
+	WHERE
+		amount payment_date BETWEEN '2007-02-07' and '2007-02-15';
+2023-04-04 00:07:05.954 PDT [2108] ERROR:  syntax error at or near "manager_id" at character 155
+2023-04-04 00:07:05.954 PDT [2108] STATEMENT:  CREATE TABLE employee(
+		employee_id INT PRIMARY KEY,
+		first_name VARCHAR (255) NOT NULL,
+		last_name VARCHAR (255) NOT NULL,
+		manager_id INT,
+		FOREIGN KEY manager_id
+		REFERENCES KEY employee (employee_id)
+		ON DELETE CASCADE
+	);
+2023-04-04 00:07:33.062 PDT [2108] ERROR:  syntax error at or near "employee" at character 184
+2023-04-04 00:07:33.062 PDT [2108] STATEMENT:  CREATE TABLE employee(
+		employee_id INT PRIMARY KEY,
+		first_name VARCHAR (255) NOT NULL,
+		last_name VARCHAR (255) NOT NULL,
+		manager_id INT,
+		FOREIGN KEY (manager_id)
+		REFERENCES KEY employee (employee_id)
+		ON DELETE CASCADE
+	);
+	
+	
+2023-04-04 00:14:26.079 PDT [2108] ERROR:  relation "manager" does not exist at character 127
+2023-04-04 00:14:26.079 PDT [2108] STATEMENT:  SELECT 
+		e.first_name || ' ' || e.last_name employee,
+		m.first_name || ' ' || m.last_name manager
+	FROM
+		employee e
+	INNER JOIN manager m
+	ON m.employee_id = e.employee_id
+	ORDER BY manager;
+2023-04-04 01:29:57.853 PDT [2108] ERROR:  syntax error at or near "IF" at character 15
+2023-04-04 01:29:57.853 PDT [2108] STATEMENT:  DROP TABLE T1 IF EXISTS;
+2023-04-04 01:32:54.251 PDT [2108] ERROR:  INSERT has more expressions than target columns at character 41
+2023-04-04 01:32:54.251 PDT [2108] STATEMENT:  INSERT INTO T1(label)
+	VALUES(
+		('A'),
+		('B'));
+2023-04-04 01:41:47.697 PDT [2108] ERROR:  INSERT has more expressions than target columns at character 35
+2023-04-04 01:41:47.697 PDT [2108] STATEMENT:  INSERT INTO T1(label)
+	VALUES('a', 'b', 'c')
+2023-04-04 01:42:53.211 PDT [2108] ERROR:  duplicate key value violates unique constraint "t1_pkey"
+2023-04-04 01:42:53.211 PDT [2108] DETAIL:  Key (label)=(a) already exists.
+2023-04-04 01:42:53.211 PDT [2108] STATEMENT:  INSERT INTO T1(label)
+	VALUES('a'),('b');
+2023-04-04 01:56:05.557 PDT [2108] ERROR:  syntax error at or near "FOREIGN" at character 122
+2023-04-04 01:56:05.557 PDT [2108] STATEMENT:  CREATE TAblE products (
+		product_id SERIAL PRIMARY KEY,
+		product_name VARCHAR (255) NOT NULL,
+		category_id INT NOT NULL
+		FOREIGN KEY (category_id) REFERENCES categories(category_id)
+	);
+	
+2023-04-04 01:58:32.605 PDT [2108] ERROR:  INSERT has more expressions than target columns at character 67
+2023-04-04 01:58:32.605 PDT [2108] STATEMENT:  INSERT INTO categories
+	VALUES (
+		('Smart Phone'), 
+		('Laptop'),
+		('Tablet')
+	);
+2023-04-04 01:59:12.795 PDT [2108] ERROR:  invalid input syntax for type integer: "Smart Phone" at character 34
+2023-04-04 01:59:12.795 PDT [2108] STATEMENT:  INSERT INTO categories
+	VALUES 
+		('Smart Phone'), 
+		('Laptop'),
+		('Tablet');
+	
+	
+2023-04-04 02:31:42.390 PDT [2108] ERROR:  relation "payments" does not exist at character 25
+2023-04-04 02:31:42.390 PDT [2108] STATEMENT:  SELECT cutomer_id 
+	FROM payments
+	GROUP BY customer_id;
+2023-04-04 02:31:49.691 PDT [2108] ERROR:  column "cutomer_id" does not exist at character 8
+2023-04-04 02:31:49.691 PDT [2108] HINT:  Perhaps you meant to reference the column "payment.customer_id".
+2023-04-04 02:31:49.691 PDT [2108] STATEMENT:  SELECT cutomer_id 
+	FROM payment
+	GROUP BY customer_id;
+2023-04-04 02:40:59.485 PDT [2108] ERROR:  relation "payemt" does not exist at character 73
+2023-04-04 02:40:59.485 PDT [2108] STATEMENT:  SELECT 
+		first_name || ' ' || last_name AS full_name,
+		sum(amount)
+	FROM payemt
+	INNER JOIN customer USING (customer_id)
+	GROUP BY 
+		full_name;
+2023-04-04 02:42:28.907 PDT [2108] ERROR:  syntax error at or near "Order" at character 155
+2023-04-04 02:42:28.907 PDT [2108] STATEMENT:  SELECT 
+		first_name || ' ' || last_name AS full_name,
+		sum(amount) AS amount
+	FROM 
+		payment
+	INNER JOIN customer USING (customer_id)
+	GROUP BY 
+		full_name;
+	Order BY 
+		amount DESC;
+2023-04-04 02:48:13.291 PDT [2108] ERROR:  function sum(payment) does not exist at character 35
+2023-04-04 02:48:13.291 PDT [2108] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2023-04-04 02:48:13.291 PDT [2108] STATEMENT:  SELECT 
+		staff_id,
+		customer_id,
+		SUM(payment)
+	FROM 
+		payment
+	GROUP BY
+		staff_id,
+		customer_id
+	ORDER BY 
+		SUM(payment) DESC;
+	
+2023-04-04 03:21:12.129 PDT [2108] ERROR:  relation "top_rated_films" does not exist at character 15
+2023-04-04 03:21:12.129 PDT [2108] STATEMENT:  SELECT * FROM top_rated_films
+	UNION 
+	SELECT * FROM most_popular_films
+2023-04-04 03:21:54.777 PDT [2108] ERROR:  relation "top_rated_films" already exists
+2023-04-04 03:21:54.777 PDT [2108] STATEMENT:  CREATE TABLE top_rated_films(
+		title VARCHAR NOT NULL,
+		release_year SMALLINT
+	);
+2023-04-04 03:41:22.394 PDT [2108] ERROR:  syntax error at or near "HAVING" at character 76
+2023-04-04 03:41:22.394 PDT [2108] STATEMENT:  SELECT 
+		stoe_id,
+		COUNT(customer_id)
+	FROM 
+		customers
+	ORDER BY 
+		store_id
+	HAVING
+		COUNT(customer_id) > 300;
+2023-04-04 03:41:55.353 PDT [2108] ERROR:  syntax error at or near "HAVING" at character 75
+2023-04-04 03:41:55.353 PDT [2108] STATEMENT:  SELECT 
+		stoe_id,
+		COUNT(customer_id)
+	FROM 
+		customer
+	ORDER BY 
+		store_id
+	HAVING
+		COUNT(customer_id) > 300;
+		
+2023-04-04 03:42:26.655 PDT [2108] ERROR:  syntax error at or near "HAVING" at character 75
+2023-04-04 03:42:26.655 PDT [2108] STATEMENT:  SELECT 
+		stoe_id,
+		COUNT(customer_id)
+	FROM 
+		customer
+	ORDER BY 
+		store_id
+	HAVING
+		COUNT(customer_id) > 30;
+2023-04-04 03:42:29.255 PDT [2108] ERROR:  syntax error at or near "HAVING" at character 75
+2023-04-04 03:42:29.255 PDT [2108] STATEMENT:  SELECT 
+		stoe_id,
+		COUNT(customer_id)
+	FROM 
+		customer
+	ORDER BY 
+		store_id
+	HAVING
+		COUNT(customer_id) > 30;
+2023-04-04 03:42:30.220 PDT [2108] ERROR:  syntax error at or near "HAVING" at character 75
+2023-04-04 03:42:30.220 PDT [2108] STATEMENT:  SELECT 
+		stoe_id,
+		COUNT(customer_id)
+	FROM 
+		customer
+	ORDER BY 
+		store_id
+	HAVING
+		COUNT(customer_id) > 30;
+2023-04-04 03:42:54.126 PDT [2108] ERROR:  column "stoe_id" does not exist at character 10
+2023-04-04 03:42:54.126 PDT [2108] HINT:  Perhaps you meant to reference the column "customer.store_id".
+2023-04-04 03:42:54.126 PDT [2108] STATEMENT:  SELECT 
+		stoe_id,
+		COUNT(customer_id)
+	FROM 
+		customer
+	GROUP BY 
+		store_id
+	HAVING
+		COUNT(customer_id) > 30;
+		
+2023-04-04 04:03:45.152 PDT [2108] ERROR:  column "brnad" does not exist at character 18
+2023-04-04 04:03:45.152 PDT [2108] HINT:  Perhaps you meant to reference the column "sales.brand".
+2023-04-04 04:03:45.152 PDT [2108] STATEMENT:  SELECT
+		GROUPING(brnad) AS grouping_brand,
+		GROUPING(segment) AS grouping_segment,
+		brand,
+		segment,
+		SUM(Quantity)
+	FROM 
+		sales
+	GROUP BY
+		GROUPING SETS (
+			(brand),
+		   (segment),
+		    ()
+		)
+	ORDER BY
+		brand,
+		segment;
+2023-04-04 04:13:06.288 PDT [2108] ERROR:  syntax error at or near "CUBE" at character 73
+2023-04-04 04:13:06.288 PDT [2108] STATEMENT:  SELECT 
+		brand,
+		segment,
+		SUM (quantity)
+	FROM 
+		sales
+	GROUP BY
+		brand
+		CUBE (segment)
+	ORDER BY
+		brand,
+		segment;
+2023-04-05 01:10:48.707 PDT [2108] ERROR:  syntax error at or near "(" at character 31
+2023-04-05 01:10:48.707 PDT [2108] STATEMENT:  SELECT 
+		brand,
+		segment
+		SUM ( quantity )
+	FROM 
+		sales
+	GROUP BY 
+		ROLLUP ( brand, segment )
+	ORDER BY 
+		brand,
+		segment
+2023-04-05 01:11:15.327 PDT [2108] ERROR:  syntax error at or near "(" at character 30
+2023-04-05 01:11:15.327 PDT [2108] STATEMENT:  SELECT 
+		brand,
+		segment
+		SUM(quantity)
+	FROM 
+		sales
+	GROUP BY 
+		ROLLUP(brand, segment)
+	ORDER BY 
+		brand,
+		segment
+		
+2023-04-05 01:20:03.081 PDT [2108] ERROR:  syntax error at or near ")" at character 262
+2023-04-05 01:20:03.081 PDT [2108] STATEMENT:  SELECT 
+		EXTRACT(YEAR FROM rental_date),
+		EXTRACT(MONTH FROM rental_date),
+		EXTRACT(DAY FROM rental_date),
+		COUNT(rental_id)
+	FROM 
+		rental
+	GROUP By
+		ROLLUP (
+			EXTRACT(YEAR FROM rental_date),
+			EXTRACT(MONTH FROM rental_date),
+			EXTRACT(DAY FROM rental_date),
+		);
+2023-04-05 01:21:55.393 PDT [2108] ERROR:  relation "rentals" does not exist at character 36
+2023-04-05 01:21:55.393 PDT [2108] STATEMENT:  Select rental_id, rental_date from rentals;
+2023-04-05 01:25:08.874 PDT [2108] ERROR:  syntax error at or near "ELECT" at character 1
+2023-04-05 01:25:08.874 PDT [2108] STATEMENT:  ELECT 
+		EXTRACT(YEAR FROM rental_date) AS y,
+		EXTRACT(MONTH FROM rental_date) AS m,
+		EXTRACT(DAY FROM rental_date) AS d,
+		COUNT(rental_id)
+	FROM 
+		rental
+2023-04-05 01:25:14.749 PDT [2108] ERROR:  column "rental.rental_date" must appear in the GROUP BY clause or be used in an aggregate function at character 28
+2023-04-05 01:25:14.749 PDT [2108] STATEMENT:  SELECT 
+		EXTRACT(YEAR FROM rental_date) AS y,
+		EXTRACT(MONTH FROM rental_date) AS m,
+		EXTRACT(DAY FROM rental_date) AS d,
+		COUNT(rental_id)
+	FROM 
+		rental
+2023-04-05 02:54:29.525 PDT [2108] ERROR:  column category.film_id does not exist at character 82
+2023-04-05 02:54:29.525 PDT [2108] STATEMENT:  SELECT 
+		title,
+		category_id
+	FROM 
+		film
+	INNER JOIN 
+		category
+	ON film.film_id = category.film_id
+	WHERE 
+		category_id = ANY (
+							SELECT 
+								category_id 
+							FROM 
+								category 
+							WHERE NAME = 'Action' 
+							OR NAME = 'Drama'
+		);
+		
+		
+2023-04-05 02:55:17.595 PDT [2108] ERROR:  column film.category_id does not exist at character 67
+2023-04-05 02:55:17.595 PDT [2108] STATEMENT:  SELECT 
+		title,
+		category_id
+	FROM 
+		film
+	INNER JOIN 
+		category
+	ON film.category_id = category.category_id
+	WHERE 
+		category_id = ANY (
+							SELECT 
+								category_id 
+							FROM 
+								category 
+							WHERE NAME = 'Action' 
+							OR NAME = 'Drama'
+		);
+		
+2023-04-05 02:56:29.169 PDT [2108] ERROR:  column "name" does not exist at character 217
+2023-04-05 02:56:29.169 PDT [2108] STATEMENT:  SELECT 
+		title,
+		category_id
+	FROM 
+		film
+	INNER JOIN 
+		film_category
+	ON film.film_id = film_category.film_id
+	WHERE 
+		category_id = ANY (
+							SELECT 
+								category_id 
+							FROM 
+								film_category 
+							WHERE NAME = 'Action' 
+							OR NAME = 'Drama'
+		);
+		
+2023-04-05 03:21:23.816 PDT [2108] ERROR:  column p.cutomer_id does not exist at character 123
+2023-04-05 03:21:23.816 PDT [2108] HINT:  Perhaps you meant to reference the column "p.customer_id".
+2023-04-05 03:21:23.816 PDT [2108] STATEMENT:  SELECT 
+		first_name,
+		last_name
+	FROM 
+		customer c 
+	WHERE EXISTS 	
+			(SELECT 
+				payment_id 
+			FROM 
+				payment p
+			 WHERE p.cutomer_id = c.customer_id
+			 AND amount > 11)
+	ORDER BY first_name,
+			 last_name
+2023-04-05 03:22:04.259 PDT [2108] ERROR:  column py.cutomer_id does not exist at character 125
+2023-04-05 03:22:04.259 PDT [2108] HINT:  Perhaps you meant to reference the column "py.customer_id".
+2023-04-05 03:22:04.259 PDT [2108] STATEMENT:  SELECT 
+		first_name,
+		last_name
+	FROM 
+		customer cu 
+	WHERE EXISTS 	
+			(SELECT 
+				payment_id 
+			FROM 
+				payment py
+			 WHERE py.cutomer_id = cu.customer_id
+			 AND amount > 11)
+	ORDER BY first_name,
+			 last_name
+	
+2023-04-05 03:22:05.364 PDT [2108] ERROR:  column py.cutomer_id does not exist at character 125
+2023-04-05 03:22:05.364 PDT [2108] HINT:  Perhaps you meant to reference the column "py.customer_id".
+2023-04-05 03:22:05.364 PDT [2108] STATEMENT:  SELECT 
+		first_name,
+		last_name
+	FROM 
+		customer cu 
+	WHERE EXISTS 	
+			(SELECT 
+				payment_id 
+			FROM 
+				payment py
+			 WHERE py.cutomer_id = cu.customer_id
+			 AND amount > 11)
+	ORDER BY first_name,
+			 last_name
+	
+2023-04-05 03:49:14.087 PDT [2108] ERROR:  null value in column "discription" of relation "links" violates not-null constraint
+2023-04-05 03:49:14.087 PDT [2108] DETAIL:  Failing row contains (1, https://www.postgresqltutorial.com, PostgreSQL Tutorial, null, null).
+2023-04-05 03:49:14.087 PDT [2108] STATEMENT:  INSERT INTO links (url, name)
+	VALUES ('https://www.postgresqltutorial.com','PostgreSQL Tutorial');
+2023-04-05 03:50:40.836 PDT [2108] ERROR:  syntax error at or near "IF" at character 6
+2023-04-05 03:50:40.836 PDT [2108] STATEMENT:  DROP IF TABLE EXISTS Links
+2023-04-06 02:25:09.774 PDT [2108] ERROR:  syntax error at or near ")" at character 136
+2023-04-06 02:25:09.774 PDT [2108] STATEMENT:  CREATE TABLE courses (
+		course_id SERIAL PRIMARY KEY,
+		course_name VARCHAR (255) NOT NULL,
+		description VARCHAR (500),
+		published_date
+	);
+2023-04-06 02:27:20.214 PDT [2108] ERROR:  column "course_description" of relation "courses" does not exist at character 36
+2023-04-06 02:27:20.214 PDT [2108] STATEMENT:  INSERT INTO 
+		courses(course_name, course_description, published_date)
+	VALUES 
+		('PostgreSQL for Developers','A complete PostgreSQL for Developers','2020-07-13'),
+		('PostgreSQL Admininstration','A PostgreSQL Guide for DBA',NULL),
+		('PostgreSQL High Performance',NULL,NULL),
+		('PostgreSQL Bootcamp','Learn PostgreSQL via Bootcamp','2013-07-11'),
+		('Mastering PostgreSQL','Mastering PostgreSQL in 21 Days','2012-06-30');
+2023-04-06 02:54:12.425 PDT [2108] ERROR:  INSERT has more target columns than expressions at character 45
+2023-04-06 02:54:12.425 PDT [2108] STATEMENT:  INSERT INTO 
+		product_segment (id, segment, discount)
+	VALUES 
+		('Grand Luxury', 0.05),
+	    ('Luxury', 0.06),
+	    ('Mass', 0.1);
+	
+2023-04-06 02:55:17.681 PDT [2108] ERROR:  INSERT has more target columns than expressions at character 45
+2023-04-06 02:55:17.681 PDT [2108] STATEMENT:  INSERT INTO 
+		product_segment (id, segment, discount)
+	VALUES 
+		('Grand Luxury', 0.05),
+	    ('Luxury', 0.06),
+	    ('Mass', 0.1);
+2023-04-06 02:55:51.318 PDT [2108] ERROR:  INSERT has more target columns than expressions at character 45
+2023-04-06 02:55:51.318 PDT [2108] STATEMENT:  INSERT INTO 
+		product_segment (id, segment, discount)
+	VALUES 
+		('Grand Luxury', 0.1),
+	    ('Luxury', 0.2),
+	    ('Mass', 0.1);
+	
+2023-04-06 03:20:59.073 PDT [2108] ERROR:  relation "contacts" does not exist at character 13
+2023-04-06 03:20:59.073 PDT [2108] STATEMENT:  DELETE FROM contacts AS co
+	USING blacklist AS b
+	WHERE co.phone = b.phone
+2023-04-06 03:24:32.648 PDT [2108] ERROR:  relation "contacts" does not exist at character 15
+2023-04-06 03:24:32.648 PDT [2108] STATEMENT:  select * from contacts
+2023-04-06 03:25:11.660 PDT [2108] ERROR:  syntax error at or near "NSERT" at character 1
+2023-04-06 03:25:11.660 PDT [2108] STATEMENT:  NSERT INTO contacts(first_name, last_name, phone)
+	VALUES ('John','Doe','(408)-523-9874'),
+	       ('Jane','Doe','(408)-511-9876'),
+	       ('Lily','Bush','(408)-124-9221');
+	
+	
+	INSERT INTO blacklist(phone)
+	VALUES ('(408)-523-9874'),
+	       ('(408)-511-9876');
+	
+2023-04-06 03:40:43.534 PDT [2108] ERROR:  column "name" of relation "customer" does not exist at character 23
+2023-04-06 03:40:43.534 PDT [2108] STATEMENT:  INSERT INTO customer (name, email)
+	VALUES ('Microsoft','hotline@microsoft.com')
+	ON CONFLICT (name)
+	DO
+		UPDATE SET email = EXCLUDED.email || ';' || customer.email;
+2023-04-06 03:41:06.098 PDT [2108] ERROR:  missing FROM-clause entry for table "customer" at character 149
+2023-04-06 03:41:06.098 PDT [2108] STATEMENT:  INSERT INTO customers (name, email)
+	VALUES ('Microsoft','hotline@microsoft.com')
+	ON CONFLICT (name)
+	DO
+		UPDATE SET email = EXCLUDED.email || ';' || customer.email;
+2023-04-07 05:34:57.355 PDT [9956] ERROR:  column "viewership.device_type" must appear in the GROUP BY clause or be used in an aggregate function at character 8
+2023-04-07 05:34:57.355 PDT [9956] STATEMENT:  select device_type, count(user_id)
+	from viewership
+2023-04-07 23:52:48.371 PDT [9956] ERROR:  function roundup(numeric, integer) does not exist at character 8
+2023-04-07 23:52:48.371 PDT [9956] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2023-04-07 23:52:48.371 PDT [9956] STATEMENT:  select roundup(1.64765858576, 2)
+2023-04-07 23:53:13.782 PDT [9956] ERROR:  function roundup(numeric) does not exist at character 8
+2023-04-07 23:53:13.782 PDT [9956] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2023-04-07 23:53:13.782 PDT [9956] STATEMENT:  select roundup(1.64765858576)
+2023-04-07 23:53:45.847 PDT [9956] ERROR:  function floor(numeric, integer) does not exist at character 8
+2023-04-07 23:53:45.847 PDT [9956] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2023-04-07 23:53:45.847 PDT [9956] STATEMENT:  select floor(1.875876, 2)
+2023-04-07 23:53:53.972 PDT [9956] ERROR:  syntax error at or near "into" at character 110
+2023-04-07 23:53:53.972 PDT [9956] STATEMENT:  CREATE TABLE viewership
+	(user_id int, device_type varchar, viewtime date);
+	
+	select * from viewership
+	
+	insert into viewership
+	(user_id, device_type)
+	values 
+	(121, 'tab'),
+	(122, 'tab'),
+	(123, 'lap'),
+	(124, 'phn'),
+	(125, 'lap'),
+	(126, 'lap'),
+	(127, 'tab'),
+	(128, 'phn')
+	
+	
+	
+	
+	select device_type, count(user_id) as views
+	from viewership
+	group by device_type
+	
+	select 
+	(select count(user_id) as lap_views
+	from viewership
+	where device_type = 'lap'), 
+	(select count(user_id) as mob_views
+	from viewership
+	where device_type = 'phn' or device_type = 'tab')
+	
+	select floor(1.875876)
